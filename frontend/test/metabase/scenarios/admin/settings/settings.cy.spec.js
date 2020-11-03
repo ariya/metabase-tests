@@ -6,7 +6,7 @@ import {
   popover,
 } from "__support__/cypress";
 
-describe("scenarios > admin > settings", () => {
+describe.skip("scenarios > admin > settings", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 

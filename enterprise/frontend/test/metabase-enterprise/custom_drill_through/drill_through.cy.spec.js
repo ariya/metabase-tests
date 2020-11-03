@@ -6,7 +6,7 @@ import {
   describeWithToken,
 } from "__support__/cypress";
 
-describeWithToken("drill through", () => {
+describe.skip("drill through", () => {
   before(restore);
 
   beforeEach(signInAsAdmin);

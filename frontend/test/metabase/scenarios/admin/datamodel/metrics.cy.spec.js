@@ -1,6 +1,6 @@
 import { restore, signInAsAdmin, popover, modal } from "__support__/cypress";
 
-describe("scenarios > admin > datamodel > metrics", () => {
+describe.skip("scenarios > admin > datamodel > metrics", () => {
   before(restore);
   beforeEach(() => {
     signInAsAdmin();

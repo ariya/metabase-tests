@@ -8,7 +8,7 @@ import {
 
 const SAMPLE_DB_URL = "/admin/datamodel/database/1";
 
-describe("scenarios > admin > datamodel > editor", () => {
+describe.skip("scenarios > admin > datamodel > editor", () => {
   beforeEach(() => {
     restore();
     signInAsAdmin();
