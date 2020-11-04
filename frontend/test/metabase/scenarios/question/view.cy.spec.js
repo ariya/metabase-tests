@@ -7,7 +7,7 @@ import {
   withSampleDataset,
 } from "__support__/cypress";
 
-describe("scenarios > question > view", () => {
+describe.skip("scenarios > question > view", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 
