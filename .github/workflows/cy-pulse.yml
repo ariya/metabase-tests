@@ -14,3 +14,46 @@ jobs:
       with:
         name: uberjar
         path: './metabase.jar'
+
+  cy-pulse:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/pulse/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
