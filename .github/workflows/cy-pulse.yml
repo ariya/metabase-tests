@@ -1,0 +1,16 @@
+name: CyPulse
+
+on: [push, pull_request]
+
+jobs:
+
+  build-uberjar:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+    - name: Download prebuilt uberjar
+      run: curl -o metabase.jar -L https://heuristic-jepsen-a5dc85.netlify.app/metabase-29499436b.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        name: uberjar
+        path: './metabase.jar'
