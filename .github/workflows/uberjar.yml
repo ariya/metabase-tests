@@ -31,7 +31,9 @@ jobs:
         name: uberjar
 
     - name: Launch uberjar
-      run: java -jar metabase.jar
+      run: |
+        java -jar metabase.jar &
+        sleep 120
       timeout-minutes: 5
 
     - name: Check API health
