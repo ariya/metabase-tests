@@ -34,8 +34,8 @@ jobs:
       run: java -jar metabase.jar &
 
     - name: Wait for API health
-      uses: cygnetdigital/wait_for_response@v2.0.0
+      uses: jtalk/url-health-check-action@v1.2
       with:
         url: 'http://localhost:3000/api/health'
-        timeout: 1000
-        interval: 10000
+        max-attempts: 20
+        retry-delay: 15s
