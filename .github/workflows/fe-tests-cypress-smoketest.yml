@@ -103,3 +103,12 @@ jobs:
       name: Run Cypress smoketest
       env:
         TERM: xterm
+
+    - name: Upload Cypress screenshots and videos
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: cypress-recording
+        path: |
+          ./cypress/screenshots
+          ./cypress/videos
